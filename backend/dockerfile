@@ -1,0 +1,20 @@
+# backend/Dockerfile
+
+# 1. Imagem base
+FROM node:lts-alpine
+
+# 2. Define o diretório de trabalho
+WORKDIR /app
+
+# 3. Copia e instala as dependências
+COPY package*.json ./
+RUN npm install
+
+# 4. Copia o restante dos arquivos
+COPY . .
+
+# 5. Expõe a porta padrão do NestJS
+EXPOSE 3000
+
+# 6. Comando para iniciar em modo de desenvolvimento (com watch)
+CMD ["npm", "run", "start:dev"]
